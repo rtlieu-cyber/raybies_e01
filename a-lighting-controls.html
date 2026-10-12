@@ -18,21 +18,21 @@
   <button id="previous" type="button">Previous</button>
   <button id="next" type="button">Next</button>
   <script>
-    const X = [
+    const color_set = [
       { name: "Amber", color: "#e6a23c" },
       { name: "Indigo", color: "#6555aa" },
       { name: "Teal", color: "#248a87" },
     ];
-    let x = 0;
+    let curr_color = 0;
     let updates_enabled = true;
     const label = document.querySelector("#label");
     const swatch = document.querySelector("#swatch");
 
     function update() {
       if (updates_enabled) {
-        let item = X[0];
-        for (let i = 0; i < X.length; i++) {
-          if (i === x) item = X[i];
+        let item = color_set[0];
+        for (let i = 0; i < color_set.length; i++) {
+          if (i === curr_color) item = color_set[i];
         }
         label.textContent = item.name;
         swatch.style.backgroundColor = item.color;
@@ -42,11 +42,11 @@
     }
 
     document.querySelector("#next").addEventListener("click", () => {
-      x = (x + 1) % X.length;
+      curr_color = (curr_color + 1) % color_set.length;
       update();
     });
     document.querySelector("#previous").addEventListener("click", () => {
-      x = (x - 1 + X.length) % X.length;
+      curr_color = (curr_color - 1 + color_set.length) % color_set.length;
       update();
     });
     update();
