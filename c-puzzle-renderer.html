@@ -19,13 +19,25 @@
     const canvas = document.querySelector("#board");
     const ctx = canvas.getContext("2d");
     const layouts = [
-      { label: "Row", positions: [[55, 80], [175, 80], [295, 80]], colors: ["#e6a23c", "#6555aa", "#248a87"] },
-      { label: "Stack", positions: [[135, 55], [175, 80], [215, 105]], colors: ["#248a87", "#e6a23c", "#6555aa"] },
+      { label: "Row",
+      tile: [
+        {position: [55, 80], color: "#e6a23c"},
+        {position: [175, 80], color: "#6555aa"},
+        {position: [295, 80], color: "#248a87"}
+      ]
+      },
+      { label: "Stack",
+      tile: [ 
+        {position: [135, 55], color: "#248a87"},
+        {position: [175, 80], color: "#e6a23c"},
+        {position: [215, 105], color: "#6555aa"}
+      ]
+      }
     ];
     let layoutIndex = 0;
     const options = { experimentalShadows: false };
 
-    function draw_rect(color, x, y) {
+    function draw_rect(color, [x, y]) {
       ctx.fillStyle = color;
       ctx.fillRect(x, y, 70, 55);
     }
@@ -34,8 +46,8 @@
       const layout = layouts[layoutIndex];
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       document.querySelector("#arrangement").textContent = `Arrangement: ${layout.label}`;
-      layout.positions.forEach(([x, y], index) => {
-        draw_rect(layout.colors[index], x, y);
+      layout.tile.forEach((tile) => {
+        draw_rect(tile.color, tile.position);
       });
       // If options.experimentalShadows, try drawing a fancy second pass later.
       // ctx.shadowBlur = 12;
