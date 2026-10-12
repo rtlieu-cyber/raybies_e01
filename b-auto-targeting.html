@@ -41,16 +41,16 @@
       // Pick the living enemy with the greatest current health.
       for (const enemy of enemies) {
         // If health is zero, that enemy is not alive.
-        if (enemy.health <= 0)
-        {
+        if (enemy.health <= 0) {
           continue;
         }
-        // Keep the earliest enemy if two have equal health.
-          if (target && target.health > enemy.health) {
+        // If the enemy has more hp than the current target, replace current target with enemy
+        if (target && target.health > enemy.health) {
           continue;
-          }
-          target = enemy;
+        }
+        target = enemy;
       }
+      // If previous comment is not true, then return current target
       return target;
     }
 
