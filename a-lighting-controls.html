@@ -24,21 +24,16 @@
       { name: "Teal", color: "#248a87" },
     ];
     let curr_color = 0;
-    let updates_enabled = true;
     const label = document.querySelector("#label");
     const swatch = document.querySelector("#swatch");
 
     function update() {
-      if (updates_enabled) {
         let item = color_set[0];
         for (let i = 0; i < color_set.length; i++) {
           if (i === curr_color) item = color_set[i];
         }
         label.textContent = item.name;
         swatch.style.backgroundColor = item.color;
-      } else {
-        console.log("ignored update while updates are disabled");
-      }
     }
 
     document.querySelector("#next").addEventListener("click", () => {
